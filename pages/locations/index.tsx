@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { dehydrate, hydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { API } from "../../assets/api/api";
 import { CharacterType, LocationType, ResponseType } from "../../assets/api/rick-and-morty-api";
 import { Header } from "../../components/Header/Header";
@@ -8,6 +8,19 @@ const getLocations = () => {
     return fetch('https://rickandmortyapi.com/api/location', {
         method: 'GET'
     }).then(res => res.json())
+}
+
+export const getStaticProps = async () => {
+
+    const queryClient = new QueryClient()
+
+    await queryClient.fetchQuery(['locations'], getLocations)
+
+    return {
+        props: {
+            dehydrateState: dehydrate(queryClient)
+        }
+    }
 }
 
 const Locations = () => {
