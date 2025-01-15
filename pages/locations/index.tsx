@@ -1,25 +1,20 @@
+import { useQuery } from "@tanstack/react-query";
 import { API } from "../../assets/api/api";
-import { CharacterType, ResponseType } from "../../assets/api/rick-and-morty-api";
+import { CharacterType, LocationType, ResponseType } from "../../assets/api/rick-and-morty-api";
 import { Header } from "../../components/Header/Header";
 import { PageWrapper } from "../../components/PageWrapper/PageWrapper";
 
-export const getStaticProps = async () => {
-    const locations = await API.rickAndMorty.getLocations()
-
-    return {
-        props: {
-            locations
-        }
-    }
+const getLocations = () => {
+    return fetch('https://rickandmortyapi.com/api/location', {
+        method: 'GET'
+    }).then(res => res.json())
 }
 
-type PropsType = {
-    locations: ResponseType<CharacterType>
-}
+const Locations = () => {
 
-const Locations = (props: PropsType) => {
+    const { data: locations } = useQuery<ResponseType<LocationType>>(['locations'], getLocations)
 
-    const { locations } = props;
+    if (!locations) return null
 
     const locationsList = locations.results.map((l) => {
         return (
