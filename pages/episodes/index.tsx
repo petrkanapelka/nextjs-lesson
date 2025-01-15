@@ -1,5 +1,6 @@
 import { API } from "../../assets/api/api";
 import { CharacterType, EpisodeType, ResponseType } from "../../assets/api/rick-and-morty-api";
+import { Card } from "../../components/Card/Card";
 import { Header } from "../../components/Header/Header";
 import { PageWrapper } from "../../components/PageWrapper/PageWrapper";
 
@@ -29,7 +30,7 @@ const Episodes = (props: PropsType) => {
 
     const episodesList = episodes.results.map((e) => {
         return (
-            <div key={e.id}>{e.name}</div>
+            <Card key={e.id} name={e.name} />
         )
     })
 

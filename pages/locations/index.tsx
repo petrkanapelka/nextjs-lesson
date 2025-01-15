@@ -3,6 +3,7 @@ import { API } from "../../assets/api/api";
 import { CharacterType, LocationType, ResponseType } from "../../assets/api/rick-and-morty-api";
 import { Header } from "../../components/Header/Header";
 import { PageWrapper } from "../../components/PageWrapper/PageWrapper";
+import { Card } from "../../components/Card/Card";
 
 const getLocations = () => {
     return fetch('https://rickandmortyapi.com/api/location', {
@@ -31,7 +32,7 @@ const Locations = () => {
 
     const locationsList = locations.results.map((l) => {
         return (
-            <div key={l.id}>{l.name}</div>
+            <Card key={l.id} name={l.name} />
         )
     })
 
