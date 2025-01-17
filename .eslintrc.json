@@ -1,3 +1,54 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "extends": [
+    "next/core-web-vitals",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "tailwindcss"],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "no-console": "warn",
+    "curly": ["error", "all"],
+    "eqeqeq": ["error", "always"],
+    "semi": ["error", "always"],
+    "no-multi-spaces": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["./tsconfig.json"],
+        "projectService": true,
+        "tsconfigRootDir": "__dirname"
+      },
+      "extends": [
+        "next/core-web-vitals",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-type-checked",
+        "plugin:@typescript-eslint/strict-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+        "prettier"
+      ],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { "argsIgnorePattern": "^_" }
+        ],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/semi": ["error", "always"],
+        "@typescript-eslint/no-extra-semi": "error",
+        "@typescript-eslint/no-multi-spaces": "error",
+        "@typescript-eslint/ban-types": [
+          "error",
+          {
+            "extendDefaults": true,
+            "types": {
+              "() => void": "Используйте явное указание типа для коллбэков вместо явного '() => void'."
+            }
+          }
+        ]
+      }
+    }
+  ]
 }

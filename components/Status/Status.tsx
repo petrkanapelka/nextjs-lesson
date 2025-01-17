@@ -5,7 +5,6 @@ type Props = {
     src: StaticImageData
 };
 export const Status = (props: Props) => {
-
     const { status, src } = props;
     return (
         <>
