@@ -2,7 +2,7 @@ import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { LocationType, ResponseType } from "assets/api/rick-and-morty-api";
 import { PageWrapper } from "components/PageWrapper/PageWrapper";
 import { Card } from "components/Card/Card";
-import { getLayout } from "components/Layout/BaseLayout/BaseLayout"
+import { getLayout } from "components/Layout/BaseLayout/BaseLayout";
 
 
 const getLocations = () => {
