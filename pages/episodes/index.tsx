@@ -12,6 +12,17 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
     const episodes = await API.rickAndMorty.getEpisodes()
 
+    const isAuth = true
+
+    if (!isAuth) {
+        return {
+            redirect: {
+                destination: '/testing',
+                permanent: false
+            }
+        }
+    }
+
     if (!episodes) {
         return {
             notFound: true
