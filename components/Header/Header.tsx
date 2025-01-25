@@ -7,6 +7,7 @@ export const Header = () => (
     <LinkBlock title={'Locations'} />
     <LinkBlock title={'Episodes'} />
     <LinkBlock title={'Testing'} />
+    <LinkBlock title={'Private'} />
   </Navbar>
 )
 
