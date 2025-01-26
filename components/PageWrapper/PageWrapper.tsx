@@ -1,5 +1,3 @@
-"use client"
-
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { HeadMeta } from '../HeadMeta/HeadMeta';
