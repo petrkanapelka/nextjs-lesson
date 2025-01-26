@@ -1,6 +1,5 @@
 "use client"
 
-import { getLayout } from 'components/Layout/BaseLayout/BaseLayout';
 import { PageWrapper } from 'components/PageWrapper/PageWrapper';
 import Link from 'next/link';
 import { CSSProperties } from 'react';
@@ -40,7 +39,5 @@ const styles: { [key: string]: CSSProperties } = {
         textDecoration: 'underline',
     },
 };
-
-NotFound.getLayout = getLayout
 
 export default NotFound;
