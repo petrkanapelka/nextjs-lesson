@@ -1,4 +1,4 @@
-import { BaseLayout } from 'components/Layout/BaseLayout/BaseLayout';
+import { BaseLayout } from 'components/BaseLayout/BaseLayout';
 import { NextPage } from 'next';
 import React, { PropsWithChildren } from 'react';
 
