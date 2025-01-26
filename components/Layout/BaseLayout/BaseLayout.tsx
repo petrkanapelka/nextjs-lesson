@@ -1,3 +1,5 @@
+"use client";
+
 import { NextPage } from 'next';
 import React, { PropsWithChildren, ReactElement } from 'react';
 import { Layout } from '../Layout';
