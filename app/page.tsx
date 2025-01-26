@@ -1,5 +1,7 @@
+"use client";
+
 import Image from 'next/image';
-import { PageWrapper } from '../components/PageWrapper/PageWrapper';
+import { PageWrapper } from 'components/PageWrapper/PageWrapper';
 import { NextPageWithLayout } from 'pages/_app';
 
 const Home: NextPageWithLayout = () => (
