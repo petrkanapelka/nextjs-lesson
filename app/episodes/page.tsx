@@ -1,32 +1,48 @@
-"use client"
+"use client";
 
-import { EpisodeType, ResponseType } from 'assets/api/rick-and-morty-api';
+import { useEffect, useState } from 'react';
 import { PageWrapper } from 'components/PageWrapper/PageWrapper';
 import { Card } from 'components/Card/Card';
-import { notFound } from 'next/navigation';
+import { EpisodeType } from 'assets/api/rick-and-morty-api';
 
-const getEpisodes = async (): Promise<ResponseType<EpisodeType>> => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_RICK_API_URL}/episode`, {
-        next: { revalidate: 60 }
-    });
+const Episodes = () => {
+    const [episodes, setEpisodes] = useState<EpisodeType[] | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
-    return await res.json();
-};
+    useEffect(() => {
+        const fetchEpisodes = async () => {
+            try {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_RICK_API_URL}/episode`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch episodes');
+                }
+                const data = await response.json();
+                setEpisodes(data.results || []);
+            } catch (err) {
+                setError('Failed to fetch episodes');
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
-export default async function Episodes() {
-    const { results } = await getEpisodes();
+        fetchEpisodes();
+    }, []);
 
-    if (!results) {
-        notFound();
-    }
-
-    const episodesList = results.map(episode => (
-        <Card key={episode.id} name={episode.name} />
-    ));
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>{error}</p>;
 
     return (
         <PageWrapper>
-            {results.length ? episodesList : 'Nothing found'}
+            {episodes && episodes.length > 0 ? (
+                episodes.map(episode => (
+                    <Card key={episode.id} name={episode.name} />
+                ))
+            ) : (
+                <p>No episodes available.</p>
+            )}
         </PageWrapper>
     );
-}
+};
+
+export default Episodes;
