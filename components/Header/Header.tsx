@@ -1,26 +1,13 @@
-'use client'
-import styled from 'styled-components';
+import React from 'react';
 import { LinkBlock } from './LinkBlock/LinkBlock';
+import './Header.module.css';
 
 export const Header = () => (
-  <Navbar>
-    <LinkBlock title={'Characters'} />
-    <LinkBlock title={'Locations'} />
-    <LinkBlock title={'Episodes'} />
-    <LinkBlock title={'Testing'} />
-    <LinkBlock title={'Private'} />
-  </Navbar>
-)
-
-const Navbar = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 1280px;
-  max-width: 100%;
-  margin: 0 auto;
-
-  @media (max-width: 700px) {
-    flex-direction: column;
-    text-align: center;
-  }
-`
+  <div className="navbar">
+    <LinkBlock title="Characters" />
+    <LinkBlock title="Locations" />
+    <LinkBlock title="Episodes" />
+    <LinkBlock title="Testing" />
+    <LinkBlock title="Private" />
+  </div>
+);
